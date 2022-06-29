@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import SelectTypeAndAddToCart from "../components/SelectTypeAndAddToCart";
 import {
@@ -14,17 +14,21 @@ import {
 
 const PizzaBlock = () => {
     // get pizza id from search query
-    const { id } = useParams();
+    const { id } = useParams<string>();
 
-    const [pizza, setPizza] = useState();
+    const [pizza, setPizza] = useState<{
+        image: string;
+        title: string;
+    }>();
 
     const { pizzaItems } = useSelector(selectPizza);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     // перевірка чи pizzaItems має потрібну піцу,  щоб уникнути лишніх запитів на сервер
     useEffect(() => {
         if (!pizzaItems.length) {
-            const fetchPizza = async (id) => {
+            const fetchPizza = async () => {
                 try {
                     const { data } = await axios.get(
                         `https://62a1db14cd2e8da9b0fca398.mockapi.io/pizza/${id}`
@@ -33,12 +37,13 @@ const PizzaBlock = () => {
                     dispatch(setPizzaItems(data));
                 } catch (e) {
                     console.log(e);
+                    navigate("/");
                 }
             };
-            fetchPizza(id);
+            fetchPizza();
             dispatch(setIsPizzaPage(true));
         } else {
-            setPizza(pizzaItems.find((i) => i.id === id));
+            setPizza(pizzaItems.find((i: { id: string }) => i.id === id));
             dispatch(setIsPizzaPage(false));
         }
     }, []);
