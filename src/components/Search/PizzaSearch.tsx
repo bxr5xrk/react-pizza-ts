@@ -8,18 +8,18 @@ const PizzaSearch = () => {
     // local value for correct display search query
     const [_value, _setValue] = useState("");
 
+    const searchPizzaRef = useRef<HTMLInputElement>(null);
+
     // for change search query
     const dispatch = useDispatch();
-    const setSearchValue = (searchValue) =>
+    const setSearchValue = (searchValue: string) =>
         dispatch(onChangeSearchValue(searchValue));
-
-    const searchPizzaRef = useRef();
 
     // for focus after user clicked clear input
     const onClickClearBtn = () => {
         setSearchValue("");
         _setValue("");
-        searchPizzaRef.current.focus();
+        searchPizzaRef.current?.focus();
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -30,7 +30,7 @@ const PizzaSearch = () => {
         []
     );
 
-    const onChangeInput = (event) => {
+    const onChangeInput = (event: any) => {
         _setValue(event.target.value);
         updateSearchValue(event.target.value);
     };

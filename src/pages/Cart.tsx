@@ -8,7 +8,10 @@ import { clearPizzaCart, selectCart } from "../store/slices/cartSlice";
 const Cart = () => {
     const { totalPrice, pizzaItemsCart } = useSelector(selectCart);
 
-    const totalPizzaCount = pizzaItemsCart.reduce((sum, i) => sum + i.count, 0);
+    const totalPizzaCount = pizzaItemsCart.reduce(
+        (sum: number, i: { count: number }) => sum + i.count,
+        0
+    );
 
     const dispatch = useDispatch();
     const clearCart = () => dispatch(clearPizzaCart());
@@ -95,7 +98,7 @@ const Cart = () => {
                             </div>
                         </div>
                         <div className="content__items">
-                            {pizzaItemsCart.map((item) => (
+                            {pizzaItemsCart.map((item: any) => (
                                 <CartItem
                                     key={item.id + item.size + item.pizzaType}
                                     {...item}

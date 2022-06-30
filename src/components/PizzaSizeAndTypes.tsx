@@ -1,8 +1,17 @@
-import React from "react";
+import React, { FC } from "react";
 import { useSelector } from "react-redux";
 import { selectPizza } from "../store/slices/pizzaSlice";
 
-const PizzaSizeAndTypes = ({
+type SizeAndTypesProps = {
+    sizes: [size: { size: number }];
+    pizzaTypes: number[];
+    sizeActive: number;
+    setSizeActive: any;
+    typeActive: number;
+    setTypeActive: any;
+};
+
+const PizzaSizeAndTypes: FC<SizeAndTypesProps> = ({
     sizes,
     pizzaTypes,
     sizeActive,

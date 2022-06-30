@@ -5,7 +5,7 @@ import { onChangePage, selectFilter } from "../../store/slices/filterSlice";
 import { selectPizza } from "../../store/slices/pizzaSlice";
 
 type PaginationProps = {
-    category: number;
+    category: number | string;
 };
 
 const Pagination: FC<PaginationProps> = ({ category }) => {
