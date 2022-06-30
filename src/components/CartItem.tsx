@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { useDispatch } from "react-redux";
 import {
     addPizzaToCart,
@@ -6,9 +6,27 @@ import {
     removePizzaFromCart,
 } from "../store/slices/cartSlice";
 
-const CartItem = ({ id, title, image, price, count, size, pizzaType }) => {
-    const dispatch = useDispatch();
+type cartItemProps = {
+    id: string;
+    title: string;
+    image: string;
+    price: number;
+    count: number;
+    size: number;
+    pizzaType: number;
+};
 
+const CartItem: FC<cartItemProps> = ({
+    id,
+    title,
+    image,
+    price,
+    count,
+    size,
+    pizzaType,
+}) => {
+    const dispatch = useDispatch();
+    
     return (
         <div className="cart__item">
             <div className="cart__item-img">

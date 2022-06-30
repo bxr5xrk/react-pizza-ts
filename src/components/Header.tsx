@@ -23,7 +23,15 @@ const Header = () => {
 
     const { totalPrice, pizzaItemsCart } = useSelector(selectCart);
 
-    const totalPizzaCount = pizzaItemsCart.reduce((sum, i) => sum + i.count, 0);
+    const totalPizzaCount = pizzaItemsCart.reduce(
+        (
+            sum: number,
+            item: {
+                count: number;
+            }
+        ) => sum + item.count,
+        0
+    );
 
     const { pathname } = useLocation();
 

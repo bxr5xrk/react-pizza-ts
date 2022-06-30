@@ -4,7 +4,12 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectFilter, setSortType } from "../store/slices/filterSlice";
 
-export const sortTypes = [
+type sortItem = {
+    name: string;
+    sortProp: string;
+};
+
+export const sortTypes: sortItem[] = [
     { name: "за популярністю", sortProp: "rating" },
     { name: "від дорогих до дешевих", sortProp: "price" },
     { name: "від дешевих до дорогих", sortProp: "-price" },
@@ -13,17 +18,17 @@ export const sortTypes = [
 
 const Sort = () => {
     const [openPopUp, setOpenPopUp] = useState(false);
-    const sortRef = useRef();
+    const sortRef = useRef<HTMLDivElement>(null);
 
     const dispatch = useDispatch();
     const { sortType } = useSelector(selectFilter);
 
-    const selectAndHide = (obj) => {
+    const selectAndHide = (obj: sortItem) => {
         setOpenPopUp(false);
         dispatch(setSortType(obj));
     };
 
-    const hidePopUp = (e) => {
+    const hidePopUp = (e: any) => {
         if (!e.path.includes(sortRef.current)) {
             setOpenPopUp(false);
         }

@@ -9,7 +9,6 @@ const initialState = {
     pizzaEdges: ["Звичайний", "Сирний"],
     isPizzaPage: false,
 };
-
 export const fetchPizzaItems = createAsyncThunk(
     "pizza/fetchPizzaStatus",
 

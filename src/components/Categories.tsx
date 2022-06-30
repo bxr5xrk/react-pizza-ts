@@ -19,11 +19,11 @@ const Categories = () => {
     const { categoryId } = useSelector(selectFilter);
 
     const dispatch = useDispatch();
-    const onClickCategory = (id) => dispatch(setCategoryId(id));
+    const onClickCategory = (id: number) => dispatch(setCategoryId(id));
 
-    const setPage = (page) => dispatch(onChangePage(page));
+    const setPage = (page: number) => dispatch(onChangePage(page));
 
-    const onChangeValue = (i) => {
+    const onChangeValue = (i: number) => {
         onClickCategory(i);
         setPage(1);
     };
