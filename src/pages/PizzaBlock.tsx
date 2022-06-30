@@ -14,7 +14,7 @@ import {
 
 const PizzaBlock = () => {
     // get pizza id from search query
-    const { id } = useParams<string>();
+    const { id } = useParams();
 
     const [pizza, setPizza] = useState<{
         image: string;
@@ -65,7 +65,7 @@ const PizzaBlock = () => {
                         <h1>{pizza.title}</h1>
 
                         <div className="pizza-block">
-                            <SelectTypeAndAddToCart id={id} />
+                            <SelectTypeAndAddToCart id={id ? id : ''} />
                         </div>
 
                         <div

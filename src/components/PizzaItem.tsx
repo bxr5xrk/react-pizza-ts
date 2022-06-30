@@ -1,8 +1,14 @@
-import React from "react";
+import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import SelectTypeAndAddToCart from "./SelectTypeAndAddToCart";
 
-const Pizza = ({ id, title, image }) => {
+type PizzaItemProps = {
+    id: string;
+    title: string;
+    image: string;
+};
+
+const PizzaItem: FC<PizzaItemProps> = ({ id, title, image }) => {
     return (
         <div className="pizza-block__wrapper">
             <div className="pizza-block">
@@ -21,4 +27,4 @@ const Pizza = ({ id, title, image }) => {
     );
 };
 
-export default Pizza;
+export default PizzaItem;

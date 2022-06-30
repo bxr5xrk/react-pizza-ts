@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import st from "./Pagination.module.scss";
 import { onChangePage, selectFilter } from "../../store/slices/filterSlice";
 import { selectPizza } from "../../store/slices/pizzaSlice";
 
-const Pagination = ({ category }) => {
-    const [totalPages, setTotalPages] = useState();
+type PaginationProps = {
+    category: number;
+};
+
+const Pagination: FC<PaginationProps> = ({ category }) => {
+    const [totalPages, setTotalPages] = useState<number>(1);
 
     // get pizza count in selected category
     useEffect(() => {
@@ -22,7 +26,7 @@ const Pagination = ({ category }) => {
 
     const { page, searchValue } = useSelector(selectFilter);
     const dispatch = useDispatch();
-    const changePage = (page) => dispatch(onChangePage(page));
+    const changePage = (page: number) => dispatch(onChangePage(page));
 
     return (
         <div>

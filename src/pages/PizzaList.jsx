@@ -3,11 +3,11 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Pagination from "../components/Pagination/Pagination";
 import PizzaFilter from "../components/PizzaFilter";
-import Pizza from "../components/PizzaItem";
 import PizzaSkeleton from "../components/PizzaSkeleton";
 import { ReadAndWriteQueryString } from "../utils/PizzaService";
 import { fetchPizzaItems } from "../store/slices/pizzaSlice";
 import { selectFilter } from "../store/slices/filterSlice";
+import PizzaItem from "../components/PizzaItem";
 
 const PizzaList = ({ title }) => {
     // pizza items and request status
@@ -51,7 +51,7 @@ const PizzaList = ({ title }) => {
                 ? item.title.toLowerCase().includes(searchValue.toLowerCase())
                 : item
         )
-        .map((item) => <Pizza key={item.id} {...item} />);
+        .map((item) => <PizzaItem key={item.id} {...item} />);
 
     // block if nothing found
     const nothingFound = (titleText, bottomText) => (
