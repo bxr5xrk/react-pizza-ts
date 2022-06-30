@@ -54,5 +54,13 @@ const pizzaSlice = createSlice({
 
 export const selectPizza = (state) => state.pizzaSlice;
 
+export const selectPizzaById = (id, sizes, sizeActive, typeActive) => (state) =>
+    state.cartSlice.pizzaItemsCart.find(
+        (obj) =>
+            id === obj.id &&
+            sizes[sizeActive].size === obj.size &&
+            initialState.pizzaEdges[typeActive] === obj.pizzaType
+    );
+
 export const { setPizzaItems, setIsPizzaPage } = pizzaSlice.actions;
 export default pizzaSlice.reducer;
