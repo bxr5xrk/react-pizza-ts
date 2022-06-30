@@ -6,9 +6,9 @@ type SizeAndTypesProps = {
     sizes: [size: { size: number }];
     pizzaTypes: number[];
     sizeActive: number;
-    setSizeActive: any;
+    setSizeActive: (i: number) => void;
     typeActive: number;
-    setTypeActive: any;
+    setTypeActive: (i: number) => void;
 };
 
 const PizzaSizeAndTypes: FC<SizeAndTypesProps> = ({

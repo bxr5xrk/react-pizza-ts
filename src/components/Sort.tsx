@@ -28,8 +28,11 @@ const Sort = () => {
         dispatch(setSortType(obj));
     };
 
-    const hidePopUp = (e: any) => {
-        if (!e.path.includes(sortRef.current)) {
+    const hidePopUp = (e: MouseEvent) => {
+        const _e = e as MouseEvent & {
+            path: Node[];
+        };
+        if (sortRef.current && !_e.path.includes(sortRef.current)) {
             setOpenPopUp(false);
         }
     };

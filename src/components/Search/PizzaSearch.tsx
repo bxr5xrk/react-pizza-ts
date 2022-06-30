@@ -1,5 +1,5 @@
 import debounce from "lodash.debounce";
-import React, { useCallback, useRef, useState } from "react";
+import React, { ChangeEvent, useCallback, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import st from "./PizzaSearch.module.scss";
 import { onChangeSearchValue } from "../../store/slices/filterSlice";
@@ -30,7 +30,7 @@ const PizzaSearch = () => {
         []
     );
 
-    const onChangeInput = (event: any) => {
+    const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
         _setValue(event.target.value);
         updateSearchValue(event.target.value);
     };
