@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
 type pizzaItem = {
     id: string;
@@ -87,7 +88,7 @@ const cartSlice = createSlice({
     },
 });
 
-export const selectCart = (state: any) => state.cartSlice;
+export const selectCart = (state: RootState) => state.cartSlice;
 
 export const selectPizzaById =
     (
@@ -96,9 +97,9 @@ export const selectPizzaById =
         sizeActive: number,
         typeActive: number
     ) =>
-    (state: any) =>
+    (state: RootState) =>
         state.cartSlice.pizzaItemsCart.find(
-            (obj: pizzaItem) =>
+            (obj) =>
                 id === obj.id &&
                 sizes[sizeActive].size === obj.size &&
                 Number(initialState.pizzaEdges[typeActive]) === obj.pizzaType
