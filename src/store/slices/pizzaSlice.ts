@@ -1,10 +1,27 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { RootState } from "../store";
 
-const initialState = {
+interface pizzaObj {
+    id: string;
+    title: string;
+    price: number;
+    image: string;
+    sizes: [{ size: number; price: number }];
+    pizzaType: number[];
+};
+
+interface PizzaSliceState {
+    pizzaItems: pizzaObj[];
+    status: "loading" | "success" | "failed";
+    limitItemsOnPage: number;
+    isPizzaPage: boolean;
+}
+
+const initialState: PizzaSliceState = {
     pizzaItems: [],
-    status: "",
+    status: "loading",
     limitItemsOnPage: 4,
     isPizzaPage: false,
 };
@@ -12,7 +29,17 @@ const initialState = {
 export const fetchPizzaItems = createAsyncThunk(
     "pizza/fetchPizzaStatus",
 
-    async ({ sortType, page, searchValue, category }) => {
+    async ({
+        sortType,
+        page,
+        searchValue,
+        category,
+    }: {
+        sortType: { name: string; sortProp: string };
+        page: number;
+        searchValue: string;
+        category: string;
+    }) => {
         const sort = sortType.sortProp.replace("-", "");
         const sortOrder = sortType.sortProp.includes("-") ? "asc" : "desc";
         const pageLimit = `&p=${page}&l=${initialState.limitItemsOnPage}`;
@@ -29,30 +56,44 @@ const pizzaSlice = createSlice({
     name: "pizza",
     initialState,
     reducers: {
-        setPizzaItems(state, action) {
+        setPizzaItems(state, action: PayloadAction<pizzaObj[]>) {
             state.pizzaItems = action.payload;
         },
         setIsPizzaPage(state, action) {
             state.isPizzaPage = action.payload;
         },
     },
-    extraReducers: {
-        [fetchPizzaItems.pending]: (state) => {
+    extraReducers: (builder) => {
+        builder.addCase(fetchPizzaItems.pending, (state) => {
             state.status = "loading";
             state.pizzaItems = [];
-        },
-        [fetchPizzaItems.fulfilled]: (state, action) => {
+        });
+        builder.addCase(fetchPizzaItems.fulfilled, (state, action) => {
             state.pizzaItems = action.payload;
-            state.status = "succes";
-        },
-        [fetchPizzaItems.rejected]: (state) => {
+            state.status = "success";
+        });
+        builder.addCase(fetchPizzaItems.rejected, (state) => {
             state.status = "failed";
             state.pizzaItems = [];
-        },
+        });
     },
+    // extraReducers: {
+    //     [fetchPizzaItems.pending]: (state) => {
+    //         state.status = "loading";
+    //         state.pizzaItems = [];
+    //     },
+    //     [fetchPizzaItems.fulfilled]: (state, action) => {
+    //         state.pizzaItems = action.payload;
+    //         state.status = "succes";
+    //     },
+    //     [fetchPizzaItems.rejected]: (state) => {
+    //         state.status = "failed";
+    //         state.pizzaItems = [];
+    //     },
+    // },
 });
 
-export const selectPizza = (state) => state.pizzaSlice;
+export const selectPizza = (state: RootState) => state.pizzaSlice;
 
 export const { setPizzaItems, setIsPizzaPage } = pizzaSlice.actions;
 export default pizzaSlice.reducer;

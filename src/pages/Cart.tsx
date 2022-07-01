@@ -98,7 +98,7 @@ const Cart = () => {
                             </div>
                         </div>
                         <div className="content__items">
-                            {pizzaItemsCart.map((item: any) => (
+                            {pizzaItemsCart.map((item) => (
                                 <CartItem
                                     key={item.id + item.size + item.pizzaType}
                                     {...item}

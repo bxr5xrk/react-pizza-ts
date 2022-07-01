@@ -13,7 +13,7 @@ type cartItemProps = {
     price: number;
     count: number;
     size: number;
-    pizzaType: number;
+    pizzaType: string;
 };
 
 const CartItem: FC<cartItemProps> = ({
@@ -41,7 +41,7 @@ const CartItem: FC<cartItemProps> = ({
             <div className="cart__item-count">
                 <div
                     onClick={() =>
-                        dispatch(pizzaitemDecrement({ id, size, pizzaType }))
+                        dispatch(pizzaitemDecrement({ id, size, pizzaType, title, image, price, count }))
                     }
                     className="button button--outline button--circle cart__item-count-minus"
                 >
@@ -65,7 +65,7 @@ const CartItem: FC<cartItemProps> = ({
                 <b>{count}</b>
                 <div
                     onClick={() =>
-                        dispatch(addPizzaToCart({ id, size, pizzaType }))
+                        dispatch(addPizzaToCart({ id, size, pizzaType, title, image, price, count }))
                     }
                     className="button button--outline button--circle cart__item-count-plus"
                 >
@@ -93,7 +93,7 @@ const CartItem: FC<cartItemProps> = ({
             <div className="cart__item-remove">
                 <div
                     onClick={() =>
-                        dispatch(removePizzaFromCart({ id, size, pizzaType }))
+                        dispatch(removePizzaFromCart({ id, size, pizzaType, title, image, price, count }))
                     }
                     className="button button--outline button--circle"
                 >

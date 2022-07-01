@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
 type pizzaItem = {
@@ -7,7 +7,7 @@ type pizzaItem = {
     price: number;
     image: string;
     size: number;
-    pizzaType: number;
+    pizzaType: string;
     count: number;
 };
 
@@ -34,7 +34,7 @@ const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
-        addPizzaToCart(state, action) {
+        addPizzaToCart(state, action: PayloadAction<pizzaItem>) {
             const findPizza = state.pizzaItemsCart.find(
                 (i) =>
                     i.id === action.payload.id &&
@@ -48,7 +48,7 @@ const cartSlice = createSlice({
 
             calculateTotalPrice(state);
         },
-        pizzaitemDecrement(state, action) {
+        pizzaitemDecrement(state, action: PayloadAction<pizzaItem>) {
             const findPizza = state.pizzaItemsCart.find(
                 (i) =>
                     i.id === action.payload.id &&
@@ -67,7 +67,7 @@ const cartSlice = createSlice({
 
             calculateTotalPrice(state);
         },
-        removePizzaFromCart(state, action) {
+        removePizzaFromCart(state, action: PayloadAction<pizzaItem>) {
             const findPizza = state.pizzaItemsCart.find(
                 (i) =>
                     i.id === action.payload.id &&
@@ -102,7 +102,7 @@ export const selectPizzaById =
             (obj) =>
                 id === obj.id &&
                 sizes[sizeActive].size === obj.size &&
-                Number(initialState.pizzaEdges[typeActive]) === obj.pizzaType
+                initialState.pizzaEdges[typeActive] === obj.pizzaType
         );
 
 export const {

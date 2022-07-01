@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
-import { selectPizza } from "../store/slices/pizzaSlice";
+import { selectCart } from "../store/slices/cartSlice";
 
 type SizeAndTypesProps = {
     sizes: [size: { size: number }];
@@ -19,7 +19,7 @@ const PizzaSizeAndTypes: FC<SizeAndTypesProps> = ({
     typeActive,
     setTypeActive,
 }) => {
-    const { pizzaEdges } = useSelector(selectPizza);
+    const { pizzaEdges } = useSelector(selectCart);
 
     return (
         <div className="pizza-block__selector">

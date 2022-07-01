@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Pagination from "../components/Pagination/Pagination";
 import PizzaFilter from "../components/PizzaFilter";
 import PizzaSkeleton from "../components/PizzaSkeleton";
@@ -8,12 +8,12 @@ import { ReadAndWriteQueryString } from "../utils/PizzaService";
 import { fetchPizzaItems, selectPizza } from "../store/slices/pizzaSlice";
 import { selectFilter } from "../store/slices/filterSlice";
 import PizzaItem from "../components/PizzaItem";
+import { useAppDispatch } from "../store/store";
 
 const PizzaList = ({ title }: { title: string }) => {
     // pizza items and request status
     const { pizzaItems, status } = useSelector(selectPizza);
 
-    // global state for sort and categories
     const { categoryId, sortType, searchValue, page } =
         useSelector(selectFilter);
 
@@ -21,16 +21,14 @@ const PizzaList = ({ title }: { title: string }) => {
     const skeleton = [...new Array(4)].map((_, i) => <PizzaSkeleton key={i} />);
 
     // for display category 'Всі'
-    const category: number | string =
-        categoryId > 0 ? `category=${categoryId}` : "";
+    const category: string = categoryId > 0 ? `category=${categoryId}` : "";
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     // get pizza from server
     useEffect(() => {
         if (status !== "failed") {
             dispatch(
-                // @ts-ignore
                 fetchPizzaItems({
                     sortType,
                     page,
@@ -53,7 +51,7 @@ const PizzaList = ({ title }: { title: string }) => {
                 ? item.title.toLowerCase().includes(searchValue.toLowerCase())
                 : item
         )
-        .map((item: any) => <PizzaItem key={item.id} {...item} />);
+        .map((item) => <PizzaItem key={item.id} {...item} />);
 
     // block if nothing found
     const nothingFound = (titleText: string, bottomText: string) => (
