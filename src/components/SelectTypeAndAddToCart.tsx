@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addPizzaToCart } from "../store/slices/cartSlice";
-import { selectPizza, selectPizzaById } from "../store/slices/pizzaSlice";
+import { selectPizza } from "../store/slices/pizzaSlice";
+import { selectPizzaById } from "../store/slices/cartSlice";
 import PizzaSizeAndTypes from "./PizzaSizeAndTypes";
 
 const SelectTypeAndAddToCart = ({ id }: { id: string }) => {
