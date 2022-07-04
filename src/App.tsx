@@ -12,7 +12,7 @@ function App() {
             <Header />
             <div className="content">
                 <Routes>
-                    <Route path="/" element={<PizzaList title="Pizza" />} />
+                    <Route path="/" element={<PizzaList />} />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/pizza/:id" element={<PizzaBlock />} />
                     <Route path="*" element={<NotFoundPage />} />

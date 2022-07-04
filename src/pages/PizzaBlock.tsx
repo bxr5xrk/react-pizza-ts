@@ -65,7 +65,7 @@ const PizzaBlock = () => {
                         <h1>{pizza.title}</h1>
 
                         <div className="pizza-block">
-                            <SelectTypeAndAddToCart id={id ? id : ''} />
+                            <SelectTypeAndAddToCart id={id ? id : ""} />
                         </div>
 
                         <div

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Pagination from "../components/Pagination/Pagination";
@@ -10,7 +9,7 @@ import { selectFilter } from "../store/slices/filterSlice";
 import PizzaItem from "../components/PizzaItem";
 import { useAppDispatch } from "../store/store";
 
-const PizzaList = ({ title }: { title: string }) => {
+const PizzaList = () => {
     // pizza items and request status
     const { pizzaItems, status } = useSelector(selectPizza);
 
@@ -39,7 +38,8 @@ const PizzaList = ({ title }: { title: string }) => {
         }
 
         window.scrollTo(0, 0);
-    }, [categoryId, sortType, page, searchValue]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [sortType, page, searchValue, category]);
 
     // for reading search query
     ReadAndWriteQueryString(categoryId, page, sortType);
@@ -74,7 +74,7 @@ const PizzaList = ({ title }: { title: string }) => {
                 <>
                     <PizzaFilter />
 
-                    <h2 className="content__title">{title}</h2>
+                    <h2 className="content__title">Pizza</h2>
 
                     {status === "loading" ? (
                         <div className="content__items">{skeleton}</div>
