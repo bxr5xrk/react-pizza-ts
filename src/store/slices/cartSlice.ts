@@ -20,13 +20,13 @@ interface CartSliceState {
 const getItemsFromLocalStorage = () => {
     const data = localStorage.getItem("cart");
 
-    return data && JSON.parse(data);
+    return data ? JSON.parse(data) : [];
 };
 
 const getPriceFromLocalStorage = () => {
     const data = localStorage.getItem("price");
 
-    return data && JSON.parse(data);
+    return data ? JSON.parse(data) : 0;
 };
 
 const initialState: CartSliceState = {
