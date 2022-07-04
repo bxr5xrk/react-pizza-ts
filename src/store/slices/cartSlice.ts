@@ -17,9 +17,21 @@ interface CartSliceState {
     pizzaEdges: string[];
 }
 
+const getItemsFromLocalStorage = () => {
+    const data = localStorage.getItem("cart");
+
+    return data && JSON.parse(data);
+};
+
+const getPriceFromLocalStorage = () => {
+    const data = localStorage.getItem("price");
+
+    return data && JSON.parse(data);
+};
+
 const initialState: CartSliceState = {
-    totalPrice: 0,
-    pizzaItemsCart: [],
+    totalPrice: getPriceFromLocalStorage(),
+    pizzaItemsCart: getItemsFromLocalStorage(),
     pizzaEdges: ["Звичайний", "Сирний"],
 };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -32,6 +32,18 @@ const Header = () => {
         ) => sum + item.count,
         0
     );
+
+    const [firstRender, setFirstRender] = useState(true);
+
+    useEffect(() => {
+        if (!firstRender) {
+            const items = JSON.stringify(pizzaItemsCart);
+            localStorage.setItem("cart", items);
+            localStorage.setItem("price", String(totalPrice));
+        }
+        setFirstRender(false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [pizzaItemsCart, totalPrice]);
 
     const { pathname } = useLocation();
 
