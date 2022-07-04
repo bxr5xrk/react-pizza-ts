@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPizzaToCart, selectCart } from "../store/slices/cartSlice";
-import { selectPizza } from "../store/slices/pizzaSlice";
-import { selectPizzaById } from "../store/slices/cartSlice";
+import { addPizzaToCart, selectCart } from "../../store/slices/cartSlice";
+import { selectPizza } from "../../store/slices/pizzaSlice";
+import { selectPizzaById } from "../../store/slices/cartSlice";
 import PizzaSizeAndTypes from "./PizzaSizeAndTypes";
 
 const SelectTypeAndAddToCart = ({ id }: { id: string }) => {
@@ -11,7 +11,6 @@ const SelectTypeAndAddToCart = ({ id }: { id: string }) => {
     const [typeActive, setTypeActive] = useState(0);
 
     const { pizzaItems, isPizzaPage } = useSelector(selectPizza);
-    // const { pizzaItems } = useSelector(selectPizza);
     const { pizzaEdges } = useSelector(selectCart);
 
     // for correctly display pizza page if it starter page

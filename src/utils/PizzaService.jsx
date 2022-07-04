@@ -3,7 +3,7 @@ import QueryString from "qs";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { sortTypes } from "../components/Sort";
+import { sortTypes } from "../components/Filter/Sort";
 import { setSearch } from "../store/slices/filterSlice";
 
 export const ReadAndWriteQueryString = (categoryId, page, sortType) => {

@@ -4,7 +4,7 @@ import {
     addPizzaToCart,
     pizzaitemDecrement,
     removePizzaFromCart,
-} from "../store/slices/cartSlice";
+} from "../../store/slices/cartSlice";
 
 type cartItemProps = {
     id: string;
@@ -26,12 +26,13 @@ const CartItem: FC<cartItemProps> = ({
     pizzaType,
 }) => {
     const dispatch = useDispatch();
-    
+
     return (
         <div className="cart__item">
             <div className="cart__item-img">
                 <img className="pizza-block__image" src={image} alt="Pizza" />
             </div>
+
             <div className="cart__item-info">
                 <h3>{title}</h3>
                 <p>
@@ -41,7 +42,17 @@ const CartItem: FC<cartItemProps> = ({
             <div className="cart__item-count">
                 <div
                     onClick={() =>
-                        dispatch(pizzaitemDecrement({ id, size, pizzaType, title, image, price, count }))
+                        dispatch(
+                            pizzaitemDecrement({
+                                id,
+                                size,
+                                pizzaType,
+                                title,
+                                image,
+                                price,
+                                count,
+                            })
+                        )
                     }
                     className="button button--outline button--circle cart__item-count-minus"
                 >
@@ -65,7 +76,17 @@ const CartItem: FC<cartItemProps> = ({
                 <b>{count}</b>
                 <div
                     onClick={() =>
-                        dispatch(addPizzaToCart({ id, size, pizzaType, title, image, price, count }))
+                        dispatch(
+                            addPizzaToCart({
+                                id,
+                                size,
+                                pizzaType,
+                                title,
+                                image,
+                                price,
+                                count,
+                            })
+                        )
                     }
                     className="button button--outline button--circle cart__item-count-plus"
                 >
@@ -93,7 +114,17 @@ const CartItem: FC<cartItemProps> = ({
             <div className="cart__item-remove">
                 <div
                     onClick={() =>
-                        dispatch(removePizzaFromCart({ id, size, pizzaType, title, image, price, count }))
+                        dispatch(
+                            removePizzaFromCart({
+                                id,
+                                size,
+                                pizzaType,
+                                title,
+                                image,
+                                price,
+                                count,
+                            })
+                        )
                     }
                     className="button button--outline button--circle"
                 >

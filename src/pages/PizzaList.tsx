@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Pagination from "../components/Pagination/Pagination";
-import PizzaFilter from "../components/PizzaFilter";
 import PizzaSkeleton from "../components/PizzaSkeleton";
 import { ReadAndWriteQueryString } from "../utils/PizzaService";
 import { fetchPizzaItems, selectPizza } from "../store/slices/pizzaSlice";
 import { selectFilter } from "../store/slices/filterSlice";
 import PizzaItem from "../components/PizzaItem";
 import { useAppDispatch } from "../store/store";
+import PizzaFilter from "../components/Filter/PizzaFilter";
 
 const PizzaList = () => {
     // pizza items and request status

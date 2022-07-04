@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
-import { selectCart } from "../store/slices/cartSlice";
+import { selectCart } from "../../store/slices/cartSlice";
 
 type SizeAndTypesProps = {
     sizes: [size: { size: number }];

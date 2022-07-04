@@ -4,7 +4,7 @@ import {
     onChangePage,
     selectFilter,
     setCategoryId,
-} from "../store/slices/filterSlice";
+} from "../../store/slices/filterSlice";
 
 const pizzaCategories = [
     "Всі",

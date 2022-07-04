@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectFilter, setSortType } from "../store/slices/filterSlice";
+import { selectFilter, setSortType } from "../../store/slices/filterSlice";
 
 type sortItem = {
     name: string;

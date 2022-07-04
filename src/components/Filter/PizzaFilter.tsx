@@ -1,7 +1,7 @@
 import React from "react";
 import Categories from "./Categories";
-import PizzaSearch from "./Search/PizzaSearch";
-import Sort from "./Sort";
+import PizzaSearch from "../Search/PizzaSearch";
+import Sort from "../Filter/Sort";
 
 const PizzaFilter = () => {
     return (

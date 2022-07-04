@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import SelectTypeAndAddToCart from "../components/SelectTypeAndAddToCart";
+import SelectTypeAndAddToCart from "../components/Filter/SelectTypeAndAddToCart";
 import {
     selectPizza,
     setIsPizzaPage,
@@ -48,9 +48,7 @@ const PizzaBlock = () => {
         }
     }, []);
 
-    const onClickBack = () => {
-        dispatch(setIsPizzaPage(false));
-    };
+    const onClickBack = () => dispatch(setIsPizzaPage(false));
 
     return (
         <div className="container">

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
-import SelectTypeAndAddToCart from "./SelectTypeAndAddToCart";
+import SelectTypeAndAddToCart from "./Filter/SelectTypeAndAddToCart";
 
 type PizzaItemProps = {
     id: string;
