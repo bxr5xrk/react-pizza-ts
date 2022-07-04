@@ -33,10 +33,20 @@ const filterSlice = createSlice({
         onChangePage(state, action: PayloadAction<number>) {
             state.page = action.payload;
         },
-        onChangeSearchValue(state, action: PayloadAction<string>) {
+        onChangeSearchValue(state, action) {
             state.searchValue = action.payload;
         },
-        setSearch(state, action: PayloadAction<FilterSliceState>) {
+        setSearch(
+            state,
+            action: PayloadAction<{
+                page: string;
+                sortType: {
+                    name: string;
+                    sortProp: string;
+                };
+                categoryId: string;
+            }>
+        ) {
             state.page = Number(action.payload.page);
             state.sortType = action.payload.sortType;
             state.categoryId = Number(action.payload.categoryId);
